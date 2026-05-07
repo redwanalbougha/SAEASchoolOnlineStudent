@@ -1,0 +1,33 @@
+name: Java Hello World CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'java-hello-world/**'
+      - '.github/workflows/java-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'java-hello-world/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Java 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+    
+    - name: Compile Java code
+      run: javac HelloWorld.java
+      working-directory: java-hello-world
+    
+    - name: Run Java application
+      run: java HelloWorld
+      working-directory: java-hello-world

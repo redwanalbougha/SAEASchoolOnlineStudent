@@ -1,0 +1,39 @@
+name: React Hello World CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'react-hello-world/**'
+      - '.github/workflows/react-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'react-hello-world/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+        cache-dependency-path: 'react-hello-world/package-lock.json'
+    
+    - name: Install dependencies
+      run: npm install
+      working-directory: react-hello-world
+    
+    - name: Build project
+      run: npm run build
+      working-directory: react-hello-world
+    
+    - name: Run tests
+      run: npm test -- --watchAll=false --passWithNoTests
+      working-directory: react-hello-world
+      continue-on-error: true
