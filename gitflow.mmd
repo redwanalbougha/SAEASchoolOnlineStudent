@@ -1,0 +1,101 @@
+gitGraph
+   commit id: "Initial commit"
+
+   %% Main branch
+   branch develop
+   checkout develop
+   commit id: "Setup project structure"
+
+   %% Feature branch
+   branch feature/login
+   checkout feature/login
+   commit id: "Add login UI"
+   commit id: "Implement auth logic"
+   checkout develop
+   merge feature/login tag: "feature complete"
+
+   %% Another feature
+   branch feature/dashboard
+   checkout feature/dashboard
+   commit id: "Create dashboard layout"
+   commit id: "Add analytics widgets"
+   checkout develop
+   merge feature/dashboard
+
+   %% Release branch
+   branch release/v1.0.0
+   checkout release/v1.0.0
+   commit id: "Bump version to 1.0.0"
+   commit id: "Fix release bugs"
+
+   %% Merge release into main
+   checkout main
+   merge release/v1.0.0 tag: "v1.0.0"
+
+   %% Back-merge release into develop
+   checkout develop
+   merge release/v1.0.0
+
+   %% Hotfix flow
+   checkout main
+   branch hotfix/security-patch
+   checkout hotfix/security-patch
+   commit id: "Fix security issue"
+
+   %% Merge hotfix into main
+   checkout main
+   merge hotfix/security-patch tag: "v1.0.1"
+
+   %% Back-merge hotfix into develop
+   checkout develop
+   merge hotfix/security-patchgitGraph
+   commit id: "Initial commit"
+
+   %% Main branch
+   branch develop
+   checkout develop
+   commit id: "Setup project structure"
+
+   %% Feature branch
+   branch feature/login
+   checkout feature/login
+   commit id: "Add login UI"
+   commit id: "Implement auth logic"
+   checkout develop
+   merge feature/login tag: "feature complete"
+
+   %% Another feature
+   branch feature/dashboard
+   checkout feature/dashboard
+   commit id: "Create dashboard layout"
+   commit id: "Add analytics widgets"
+   checkout develop
+   merge feature/dashboard
+
+   %% Release branch
+   branch release/v1.0.0
+   checkout release/v1.0.0
+   commit id: "Bump version to 1.0.0"
+   commit id: "Fix release bugs"
+
+   %% Merge release into main
+   checkout main
+   merge release/v1.0.0 tag: "v1.0.0"
+
+   %% Back-merge release into develop
+   checkout develop
+   merge release/v1.0.0
+
+   %% Hotfix flow
+   checkout main
+   branch hotfix/security-patch
+   checkout hotfix/security-patch
+   commit id: "Fix security issue"
+
+   %% Merge hotfix into main
+   checkout main
+   merge hotfix/security-patch tag: "v1.0.1"
+
+   %% Back-merge hotfix into develop
+   checkout develop
+   merge hotfix/security-patch
