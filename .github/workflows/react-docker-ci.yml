@@ -26,5 +26,5 @@ jobs:
         set -e
         docker run --rm -d --name react-docker-ci -p 3000:80 react-hello-world:ci
         sleep 20
-        curl -fsSL http://127.0.0.1:3000 | grep 'Hello from Docker env file'
+        curl -fsSL http://127.0.0.1:3000 | grep 'Hello World!'
         docker stop react-docker-ci
