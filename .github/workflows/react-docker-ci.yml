@@ -18,13 +18,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Build React Docker image
-      run: docker build -t react-hello-world:ci react-hello-world
-
-    - name: Run React Docker container and verify content
+    - name: Start React app with Docker Compose
       run: |
         set -e
-        docker run --rm -d --name react-docker-ci -p 3000:80 react-hello-world:ci
-        sleep 20
+        docker compose up --build -d react-app
+        sleep 5
         curl -fsSL http://127.0.0.1:3000 | grep 'Hello World!'
-        docker stop react-docker-ci
+        docker compose down
