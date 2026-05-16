@@ -24,7 +24,7 @@ jobs:
     - name: Run React Docker container and verify content
       run: |
         set -e
-        docker run --rm -d --name react-docker-ci -p 8080:80 --env-file react-hello-world/.env react-hello-world:ci
+        docker run --rm -d --name react-docker-ci -p 3000:80 react-hello-world:ci
         sleep 5
-        curl -fsSL http://127.0.0.1:8080 | grep 'Hello from Docker env file'
+        curl -fsSL http://127.0.0.1:3000 | grep 'Hello from Docker env file'
         docker stop react-docker-ci
