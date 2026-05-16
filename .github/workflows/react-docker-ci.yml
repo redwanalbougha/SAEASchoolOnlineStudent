@@ -1,0 +1,27 @@
+name: React Hello World Docker CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'react-hello-world/**'
+      - '.github/workflows/react-docker-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'react-hello-world/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Start React app with Docker Compose
+      run: |
+        set -e
+        docker compose up --build -d react-app
+        sleep 5
+        # curl -fsSL http://127.0.0.1:3000 | grep 'Hello World!'
+        docker compose down
