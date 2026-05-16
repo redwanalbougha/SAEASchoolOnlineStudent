@@ -1,0 +1,26 @@
+name: Java Hello World Docker CI
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'java-hello-world/**'
+      - '.github/workflows/java-docker-ci.yml'
+  pull_request:
+    branches: [ main, develop ]
+    paths:
+      - 'java-hello-world/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build Java Docker image
+      run: docker build -t java-hello-world:ci java-hello-world
+
+    - name: Run Java Docker container with env var
+      run: |
+        docker run --rm -e JAVA_MESSAGE='Hello from Docker CI' java-hello-world:ci | grep 'Hello from Docker CI'
